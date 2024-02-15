@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using PRN221ProjectGroup.Data;
+using PRN221ProjectGroup.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,8 @@ builder.Services.AddDbContext<DataContext>(opt =>
 {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 var app = builder.Build();
 
